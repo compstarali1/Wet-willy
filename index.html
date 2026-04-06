@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Whispers of Wet Revenge</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    background: #000;
+    color:#fff;
+}
+
+.bg{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:url('bg.jpg') no-repeat center center/cover;
+    opacity:0.6;
+    z-index:-1;
+}
+
+.header{
+    position:absolute;
+    top:20px;
+    width:100%;
+    text-align:center;
+    font-size:2.5rem;
+    font-weight:bold;
+    letter-spacing:3px;
+    text-shadow:0 0 20px rgba(0,0,0,0.8);
+}
+
+.container{
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction: column;
+}
+
+.buttons{
+    display:flex;
+    flex-direction:column;
+    gap:15px; /* Tightened gap for sub-buttons */
+}
+
+/* 3D Buttons with Neon Border */
+.btn {
+    width:260px;
+    padding:18px;
+    text-align:center;
+    font-size:20px;
+    border-radius:15px;
+    cursor:pointer;
+    text-decoration:none;
+    color:#fff;
+    background:rgba(30,30,30,0.7);
+    backdrop-filter:blur(6px);
+    display: block;
+    
+    /* Neon Border Effect */
+    border: 1px solid rgba(0, 255, 255, 0.5);
+    box-shadow:
+        0 0 5px rgba(0, 255, 255, 0.2),
+        inset 0 0 5px rgba(0, 255, 255, 0.1),
+        0 10px 20px rgba(0,0,0,0.6);
+
+    transition:all 0.2s ease;
+}
+
+/* Mini Audio Buttons (40% Height) */
+.btn-mini {
+    padding: 8px !important;
+    font-size: 14px !important;
+    margin-top: -10px; /* Snaps closer to the main button */
+    margin-bottom: 10px;
+    border-color: rgba(255, 0, 255, 0.5); /* Different neon color for audio */
+    box-shadow: 0 0 5px rgba(255, 0, 255, 0.2);
+}
+
+.btn:hover{
+    transform:translateY(-4px);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+}
+
+.btn-mini:hover {
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
+}
+
+/* Progress Bar Container */
+#progress-container {
+    width: 260px;
+    height: 10px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 5px;
+    margin-top: 10px;
+    display: none; /* Hidden until play */
+    overflow: hidden;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background: cyan;
+    box-shadow: 0 0 10px cyan;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="header">Wet Willy Revenge</div>
+
+<div class="container">
+    <div class="buttons">
+        <!-- Prologue Group -->
+        <a href="prologue.html" class="btn">Wet  Revenge</a>
+        <div class="btn btn-mini" onclick="playAudio('revenge.mp3')">🔊 Listen Wettest Willy</div>
+
+        <!-- Chapter 1 Group -->
+        <a href="Chapter1.html" class="btn">Whispers of Wetness</a>
+        <div class="btn btn-mini" onclick="playAudio('wetness.mp3')">🔊 Listen Arousal</div>
+
+        <!-- Chapter 2 Group -->
+        <a href="chapter2.html" class="btn">Musk Mutiny</a>
+        <div class="btn btn-mini" onclick="playAudio('mutiny.mp3')">🔊 Listen Teasong</div>
+
+        <!-- Extra / Narration Group -->
+        <div class="btn" onclick="playAudio('ascended.mp3')">Love Story Awe-9/10</div>
+        
+        <!-- Shared Progress Bar -->
+        <div id="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentAudio = new Audio();
+    const progressBar = document.getElementById('progress-bar');
+    const progressCont = document.getElementById('progress-container');
+
+    function playAudio(file) {
+        currentAudio.src = file;
+        currentAudio.play();
+        progressCont.style.display = 'block';
+
+        currentAudio.ontimeupdate = function() {
+            let progress = (currentAudio.currentTime / currentAudio.duration) * 100;
+            progressBar.style.width = progress + "%";
+        };
+
+        currentAudio.onended = function() {
+            progressCont.style.display = 'none';
+            progressBar.style.width = "0%";
+        };
+    }
+</script>
+
+</body>
+</html>
